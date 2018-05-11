@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import com.hp.lft.report.ReportException;
 import com.hp.lft.report.Reporter;
 import com.hp.lft.report.Status;
-
+import com.hp.lft.unittesting.Parameters;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import unittesting.*;
 
 public class LeanFtTest extends UnitTestClassBase {
 
-    public LeanFtTest() {
+    public LeanFtTest() throws GeneralLeanFtException, ReportException {
         //Change this constructor to private if you supply your own public constructor
     }
 
@@ -35,18 +35,32 @@ public class LeanFtTest extends UnitTestClassBase {
     }
 
     @Before
-    public void setUp()  {
+    public void setUp() throws Exception {
     }
 
     @After
-    public void tearDown()  {
+    public void tearDown() throws Exception {
+    }
+
+
+    @Test
+    public void testChrome() throws GeneralLeanFtException,ReportException
+    {
+        test(BrowserType.CHROME);
     }
 
     @Test
-    public void mySecondTest() throws GeneralLeanFtException,ReportException {
+    public void testFirefox() throws GeneralLeanFtException,ReportException
+    {
+        test(BrowserType.FIREFOX);
+    }
 
-        Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-        browser.navigate("http://www.advantageonlineshopping.com:8080/");
+    @Parameters({"browserName"})
+    public void test(BrowserType browserName) throws GeneralLeanFtException, ReportException {
+        Browser browser = BrowserFactory.launch(browserName);
+        // was Browser browser = BrowserFactory.launch(BrowserType.CHROME);
+
+        browser.navigate("http://advantageonlineshopping.com");
 
         LearnApplicationModels appModel = new LearnApplicationModels(browser);
 
@@ -55,24 +69,23 @@ public class LeanFtTest extends UnitTestClassBase {
         appModel.SaveToCartButton().click();
         appModel.MenuCartWebElement().click();
         String total = appModel.TotalInCart().getInnerText();
-        System.out.println(total);
         String[] total_split = total.split("\\$");
         String justNumber = total_split[1];
-        double totalValue = Double.valueOf(justNumber);
-        System.out.println(totalValue);
-        Verify.greaterOrEqual(totalValue, 2000.0,"VerName","Long verification description");
+        System.out.println(justNumber);
+        String noCommas = justNumber.replaceAll(",","");
+        System.out.println(noCommas);
+        double totalValue = Double.valueOf(noCommas);
+        Verify.greaterOrEqual(totalValue, 2000.0, "VerName", "Long verification description");
 
-        if(totalValue >= 2000) {
+        if (totalValue >= 2000) {
             Reporter.reportEvent("alsoVerName", "In this description - it passed", Status.Passed);
-        }else{
+        } else {
             Reporter.reportEvent("alsoVerName", "In this description - something wrong, failed!", Status.Failed);
         }
         appModel.REMOVEWebElement().click();
         appModel.HOMELink().click();
 
-
         browser.close();
-
     }
 
 }
