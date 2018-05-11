@@ -42,49 +42,15 @@ public class LeanFtTest extends UnitTestClassBase {
     public void mySecondTest() throws GeneralLeanFtException {
 
         Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-
         browser.navigate("http://www.advantageonlineshopping.com:8080/");
 
-        Link sPEAKERSLink = browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("SPEAKERS")
-                .tagName("SPAN").build());
-        sPEAKERSLink.click();
-
-        Button buyNowButton = browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("submit")
-                .name("BUY NOW")
-                .tagName("BUTTON").build());
-        buyNowButton.click();
-
-        Button saveToCartButton = browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("submit")
-                .name("ADD TO CART")
-                .tagName("BUTTON").build());
-        saveToCartButton.click();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .accessibilityName("")
-                .id("menuCart")
-                .innerText("")
-                .tagName("svg").build()).click();
-
-        /*Link link = browser.describe(Link.class, new LinkDescription.Builder()
-                .accessibilityName("")
-                .innerText("1 ")
-                .role("link")
-                .tagName("A")
-                .index(1).build());
-        link.click();
-*/
-        WebElement rEMOVEWebElement = browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .innerText("REMOVE")
-                .tagName("A").build());
-        rEMOVEWebElement.click();
-
-        Link hOMELink = browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("HOME")
-                .tagName("A").build());
-        hOMELink.click();
+        LearnApplicationModels appModel = new LearnApplicationModels(browser);
+        appModel.SPEAKERSLink().click();
+        appModel.BuyNow().click();
+        appModel.SaveToCartButton().click();
+        appModel.MenuCartWebElement().click();
+        appModel.REMOVEWebElement().click();
+        appModel.HOMELink().click();
 
 
         browser.close();
