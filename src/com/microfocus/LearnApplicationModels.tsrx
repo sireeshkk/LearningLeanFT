@@ -73,5 +73,17 @@
                 </properties>
             </identification>
         </object>
+        <object type="WebElement" technology="Web">
+            <name>total</name>
+            <codeName>TotalInCart</codeName>
+            <description></description>
+            <identification>
+                <properties>
+                    <property name="ClassName" type="string" isRegExp="false">roboto-medium ng-binding</property>
+                    <property name="TagName" type="string" isRegExp="false">SPAN</property>
+                    <property name="InnerText" type="string" isRegExp="true">^\$\d+.*</property>
+                </properties>
+            </identification>
+        </object>
     </objects>
 </applicationModel>

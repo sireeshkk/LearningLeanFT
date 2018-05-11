@@ -20,6 +20,7 @@ public class LearnApplicationModels extends AppModelBase {		private SPEAKERSLink
 	private REMOVEWebElement REMOVEWebElement;
 	private HOMELink HOMELink;
 	private MenuCartWebElement MenuCartWebElement;
+	private TotalInCart TotalInCart;
 	
 	public LearnApplicationModels(TestObject contextTestObject) throws GeneralLeanFtException
 	{
@@ -30,6 +31,7 @@ public class LearnApplicationModels extends AppModelBase {		private SPEAKERSLink
 		REMOVEWebElement = new REMOVEWebElement(contextTestObject, this);
 		HOMELink = new HOMELink(contextTestObject, this);
 		MenuCartWebElement = new MenuCartWebElement(contextTestObject, this);
+		TotalInCart = new TotalInCart(contextTestObject, this);
 		rebuildDescriptions();
 	}	
 
@@ -39,6 +41,7 @@ public class LearnApplicationModels extends AppModelBase {		private SPEAKERSLink
 		public REMOVEWebElement REMOVEWebElement() { return REMOVEWebElement; }
 		public HOMELink HOMELink() { return HOMELink; }
 		public MenuCartWebElement MenuCartWebElement() { return MenuCartWebElement; }
+		public TotalInCart TotalInCart() { return TotalInCart; }
 
 		public class SPEAKERSLink extends LinkNodeBase
 	{
@@ -187,6 +190,32 @@ public class LearnApplicationModels extends AppModelBase {		private SPEAKERSLink
 			com.hp.lft.sdk.web.WebElementDescription description = null; 
 			try{
 				description = new com.hp.lft.sdk.web.WebElementDescription.Builder().accessibilityName("").id("menuCart").innerText("").tagName("svg").build();
+			}catch(Exception e){
+				throw new GeneralLeanFtException(e.getMessage(), e);
+			}
+			return description;
+		}
+
+				
+			}
+
+	public class TotalInCart extends WebElementNodeBase
+	{
+
+		
+								public TotalInCart(TestObject parent, AppModelBase applicationModel) throws GeneralLeanFtException
+		{
+			super(parent, applicationModel);
+
+			
+			setDisplayName("total");
+		}
+
+		@Override
+		protected com.hp.lft.sdk.web.WebElementDescription createDescription() throws GeneralLeanFtException{
+			com.hp.lft.sdk.web.WebElementDescription description = null; 
+			try{
+				description = new com.hp.lft.sdk.web.WebElementDescription.Builder().className("roboto-medium ng-binding").tagName("SPAN").innerText(new RegExpProperty("^\\$\\d+.*")).build();
 			}catch(Exception e){
 				throw new GeneralLeanFtException(e.getMessage(), e);
 			}
