@@ -42,10 +42,10 @@ public class LeanFtTest extends UnitTestClassBase {
         System.out.println("Browser launch : " + bType + " complete at: " +LocalTime.now());
         Thread.sleep(3*1000);
         browser.navigate("msn.com");
-        Thread.sleep(5*1000);
+        Thread.sleep(15*1000); // these sleeps are to ensure that you can see both browsers running
         browser.navigate("google.com");
-        Thread.sleep(5*1000);
-        System.out.println("Stopping:" + LocalTime.now());
+        Thread.sleep(15*1000);
+        System.out.println("Stopping browser: " + bType + " at: " + LocalTime.now());
 
         browser.close();
 
