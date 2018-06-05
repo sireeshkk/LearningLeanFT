@@ -3,14 +3,21 @@
     <test name="RunChrome">
         <parameter name="browserToOpen" value="CHROME"/>
         <classes>
-            <class name="com.microfocus.LeanFtTest"/>
-        </classes>
+            <class name="com.microfocus.LeanFtTest">
+                <methods>
+                    <include name="myNewTest"/>
+                </methods>
+        </class>
+    </classes>
     </test>
     <test name="RunFF">
         <parameter name="browserToOpen" value="FIREFOX"/>
         <classes>
-            <class name="com.microfocus.LeanFtTest"/>
+            <class name="com.microfocus.LeanFtTest">
+                <methods>
+                    <include name="myNewTest"/>
+                </methods>
+            </class>
         </classes>
         </test>
-
 </suite>

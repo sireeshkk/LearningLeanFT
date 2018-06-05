@@ -14,9 +14,9 @@ public class LeanFtTest extends UnitTestClassBase {
     @BeforeClass
     public void beforeClass() throws Exception {
         //rrs
-        ModifiableSDKConfiguration config = new ModifiableSDKConfiguration();
-        SDK.init(config);
-        Reporter.init();
+        //ModifiableSDKConfiguration config = new ModifiableSDKConfiguration();
+        //SDK.init(config);
+        //Reporter.init();
     }
 
     @AfterClass
@@ -31,6 +31,7 @@ public class LeanFtTest extends UnitTestClassBase {
     public void afterMethod() throws Exception {
 
     }
+
 //    BrowserType bType = BrowserType.CHROME; //    @Parameters({"browserToOpen"})
 
     @Test
@@ -38,6 +39,7 @@ public class LeanFtTest extends UnitTestClassBase {
     public void myNewTest(BrowserType bType) throws GeneralLeanFtException, InterruptedException {
         // adding a time stamp so it is clear that both browsers are starting at same time
         System.out.println("Starting browser: " + bType + " at: " +LocalTime.now());
+
         Browser browser = BrowserFactory.launch(bType);
         System.out.println("Browser launch : " + bType + " complete at: " +LocalTime.now());
         Thread.sleep(3*1000);
