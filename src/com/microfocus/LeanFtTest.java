@@ -31,17 +31,30 @@ public class LeanFtTest extends UnitTestClassBase {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown()  {
     }
 
     @Test
-    public void test() throws GeneralLeanFtException {
+    public void mySecondTest() throws GeneralLeanFtException {
+
         Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-        browser.navigate("http://www.advantageonlineshopping.com");
+        browser.navigate("http://www.advantageonlineshopping.com:8080/");
+
+        LearnApplicationModels appModel = new LearnApplicationModels(browser);
+        appModel.SPEAKERSLink().click();
+        appModel.BuyNow().click();
+        appModel.SaveToCartButton().click();
+        appModel.MenuCartWebElement().click();
+        appModel.REMOVEWebElement().click();
+        appModel.HOMELink().click();
+
+
+        browser.close();
+
     }
 
 }
